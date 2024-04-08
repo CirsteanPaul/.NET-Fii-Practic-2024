@@ -1,5 +1,6 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
+using Services.Features.Cars;
 using Services.Features.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IIdentityService, IdentityService>();
+builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddDbContext<AppDbContext>(
     o => o.UseInMemoryDatabase("data"));
 

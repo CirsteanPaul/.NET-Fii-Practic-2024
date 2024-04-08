@@ -1,5 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+using Autovit.Mappers;
+using Autovit.Models.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Services.Features.Identity;
+using Services.Features.Identity.DTOs;
 
 namespace Autovit.Controllers;
 
@@ -23,9 +29,9 @@ public sealed class IdentityController : ControllerBase
     }
     
     [HttpPost("register")]
-    public ActionResult Register(string username, string password, string email)
+    public ActionResult Register(IdentityRegisterRequest request)
     {
-        _identityService.Register(username, password, email);
+        _identityService.Register(request.ToDto());
 
         return Ok();
     }
